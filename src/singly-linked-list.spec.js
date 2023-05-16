@@ -1,5 +1,4 @@
 import { SinglyLinkedList, SinglyLinkedListErrorMessages } from "./LinkedList";
-const util = require("util");
 
 const generateRandomNumber = ({ minimum = 0, maximum = 20 } = {}) =>
   minimum + Math.ceil(Math.random() * (maximum - minimum));
