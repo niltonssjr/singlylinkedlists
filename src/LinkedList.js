@@ -171,5 +171,18 @@ export class SinglyLinkedList {
     this.#length++;
   }
 
-  remove(index) {}
+  remove(index) {
+    if (this.length == 0 || index < 0 || index > this.length - 1) {
+      throw new Error(SinglyLinkedListErrorMessages.outOfBoundaries);
+    }
+
+    if (index == 0) return this.shift();
+
+    if (index == this.length - 1) return this.pop();
+
+    const { current, prior } = this.#retrieveTargetAndPriorNodes(index);
+
+    prior.next = current.next;
+    this.#length--;
+  }
 }

@@ -293,13 +293,73 @@ describe("Linked List", () => {
     expect(list.toArray()).toEqual(numbersList);
   });
 
-  it.todo("Remove an element from an empty list");
+  it("Remove an element from an empty list", () => {
+    const randomIndex = generateRandomNumber();
+    expect.assertions(1);
+    try {
+      list.remove(randomIndex);
+    } catch (error) {
+      expect(error.message).toEqual(
+        SinglyLinkedListErrorMessages.outOfBoundaries
+      );
+    }
+  });
 
-  it.todo("Remove an element from the top of the list");
+  it("Remove an element using a nonexistent index", () => {
+    const count = generateRandomNumber();
+    const numbersList = generateListOfNumbers(count);
+    list.fromArray(numbersList);
 
-  it.todo("Remove an element from the bottom of the list");
+    const indexOutOfBoundaries = generateRandomNumber() + count;
+    expect.assertions(1);
 
-  it.todo("Remove an element from the middle of the list");
+    try {
+      list.remove(indexOutOfBoundaries);
+    } catch (error) {
+      expect(error.message).toEqual(
+        SinglyLinkedListErrorMessages.outOfBoundaries
+      );
+    }
+  });
 
-  it.todo("Remove an element using a nonexistent index");
+  it("Remove an element from the top of the list", () => {
+    const count = generateRandomNumber();
+    const numbersList = generateListOfNumbers(count);
+    list.fromArray(numbersList);
+
+    numbersList.shift();
+    list.remove(0);
+
+    expect(list.length).toEqual(count - 1);
+    expect(list.toArray()).toEqual(numbersList);
+  });
+
+  it("Remove an element from the bottom of the list", () => {
+    const count = generateRandomNumber();
+    const numbersList = generateListOfNumbers(count);
+    list.fromArray(numbersList);
+
+    numbersList.pop();
+    list.remove(count - 1);
+
+    expect(list.length).toEqual(count - 1);
+    expect(list.toArray()).toEqual(numbersList);
+  });
+
+  it("Remove an element from the middle of the list", () => {
+    const count = generateRandomNumber({ minimum: 10 });
+    const numbersList = generateListOfNumbers(count);
+    list.fromArray(numbersList);
+
+    const randomValidIndex = generateRandomNumber({
+      minimum: 1,
+      maximum: count - 2,
+    });
+
+    numbersList.splice(randomValidIndex, 1);
+    list.remove(randomValidIndex);
+
+    expect(list.length).toEqual(count - 1);
+    expect(list.toArray()).toEqual(numbersList);
+  });
 });
