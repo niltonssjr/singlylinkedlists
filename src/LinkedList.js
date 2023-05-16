@@ -57,11 +57,7 @@ export class SinglyLinkedList {
       this.head = newNode;
       this.tail = this.head;
     } else {
-      let current = this.head;
-      while (current.next) {
-        current = current.next;
-      }
-      current.next = newNode;
+      this.tail.next = newNode;
       this.tail = newNode;
     }
 
