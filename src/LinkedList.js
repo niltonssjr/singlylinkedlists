@@ -1,5 +1,3 @@
-const util = require("util");
-
 export class Node {
   constructor(val) {
     this.data = val;
