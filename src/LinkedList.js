@@ -69,9 +69,7 @@ export class SinglyLinkedList {
 
     if (this.#length == 1) {
       const returnedValue = this.head.data;
-      this.head = null;
-      this.tail = null;
-      this.#length = 0;
+      this.clear();
       return returnedValue;
     }
 
